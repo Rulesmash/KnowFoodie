@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnowFoodie</title>
+    <!-- Favicon -->
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+
+    <!-- Use a premium font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>KnowFoodie</h1>
+    </header>
+
+    <div class="container">
+        <!-- Scanner Section -->
+        <div class="glass-card" id="scanner-container">
+            <div id="reader"></div>
+            <p style="text-align: center; font-size: 0.9rem; margin-top: 10px; opacity: 0.7;">
+                Point camera at a food barcode
+            </p>
+
+            <div class="manual-input">
+                <input type="text" id="manual-barcode" placeholder="Or enter barcode manually..." />
+                <button onclick="handleManualScan()">Search</button>
+            </div>
+            <div id="error-msg" class="error-message"></div>
+        </div>
+
+        <div id="loading" class="spinner"></div>
+
+        <!-- Results Section -->
+        <div class="glass-card product-card" id="product-card">
+            <div class="product-header">
+                <img id="p-image" src="" alt="Product" class="product-image">
+                <div class="product-info">
+                    <h2 id="p-name">Product Name</h2>
+                    <div class="veg-status" id="p-veg">
+                        <span id="veg-icon">●</span> <span id="veg-text">Unknown</span>
+                    </div>
+                    <p id="p-category">Category</p>
+                </div>
+            </div>
+
+            <!-- Visual Nutri-Score Scale -->
+            <div class="detail-item nutriscore-container">
+                <span class="detail-label">Nutri-Score</span>
+                <div class="vig-score-value" id="score-value">A</div>
+                <div class="nutriscore-scale">
+                    <div class="scale-segment scale-a">A</div>
+                    <div class="scale-segment scale-b">B</div>
+                    <div class="scale-segment scale-c">C</div>
+                    <div class="scale-segment scale-d">D</div>
+                    <div class="scale-segment scale-e">E</div>
+                </div>
+                <div class="score-indicator" id="score-indicator"></div>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Allergens</span>
+                    <div id="p-allergens" class="detail-value">None found</div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Additives</span>
+                    <div id="p-additives" class="detail-value">None found</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+
+</body>
+
+</html>

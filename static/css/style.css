@@ -1,0 +1,287 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #2196F3;
+    --background-start: #1a1a2e;
+    --background-end: #16213e;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-color: #ffffff;
+    --card-bg: rgba(23, 23, 33, 0.95);
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, var(--background-start), var(--background-end));
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+h1 {
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.container {
+    max-width: 600px;
+    width: 90%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+#scanner-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+#reader {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Fix html5-qrcode video size */
+#reader video {
+    border-radius: 12px;
+    object-fit: cover !important;
+}
+
+.product-card {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    gap: 15px;
+    animation: slideIn 0.5s ease-out;
+    background: var(--card-bg);
+}
+
+.product-header {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 15px;
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+.product-info h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.product-info p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Changed to 1 col for better mobile layout */
+    gap: 15px;
+}
+
+@media (min-width: 500px) {
+    .details-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.detail-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.detail-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.detail-value {
+    font-weight: 600;
+}
+
+.pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Nutri-Score Scale Visual */
+.nutriscore-container {
+    margin-top: 10px;
+    position: relative;
+    padding-bottom: 20px; /* Space for arrow */
+}
+
+.nutriscore-scale {
+    display: flex;
+    height: 15px; /* Increased height */
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.scale-segment {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: rgba(255,255,255,0.8);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.scale-a { background-color: #038141; }
+.scale-b { background-color: #85BB2F; }
+.scale-c { background-color: #FECB02; color: #333; text-shadow: none; }
+.scale-d { background-color: #EE8100; }
+.scale-e { background-color: #E63E11; }
+
+.score-indicator {
+    width: 0; 
+    height: 0; 
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 12px solid white;
+    position: absolute;
+    bottom: 5px; /* Adjust based on scale height */
+    transform: translateX(-50%);
+    transition: left 0.5s ease-out;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+}
+
+.vig-score-value {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+
+.veg-status {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.veg-green { color: #4CAF50; }
+.veg-red { color: #f44336; }
+.veg-unknown { color: #FF9800; }
+
+/* Manual Input for fallback */
+.manual-input {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.manual-input input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    outline: none;
+}
+.manual-input button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+.manual-input button:hover {
+    background: #43a047;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading spinner */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: var(--primary-color);
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-message {
+    color: #ff6b6b;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+}
