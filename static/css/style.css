@@ -74,14 +74,21 @@ h1 {
 
 #reader {
     width: 100%;
+    /* Mobile-friendly height limit */
+    max-height: 250px;
     border-radius: 12px;
     overflow: hidden;
+    position: relative;
+    background: #000;
 }
 
 /* Fix html5-qrcode video size */
 #reader video {
     border-radius: 12px;
     object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 250px !important;
 }
 
 .product-card {

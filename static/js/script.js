@@ -23,7 +23,7 @@ Html5Qrcode.getCameras().then(devices => {
             { facingMode: "environment" },
             {
                 fps: 10,
-                qrbox: { width: 250, height: 100 }
+                qrbox: { width: 250, height: 250 }
             },
             onScanSuccess,
             onScanFailure
